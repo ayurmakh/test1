@@ -24,13 +24,21 @@ export default {
   },
   methods: {
     numInput(value, i) {
-      this.nums[i] = parseInt(value);
+      this.nums[i] = value;
     },
     findSum() {
+      for (let i = 0; i < this.nums.length; i++)
+        if (!this.isNumeric(this.nums[i])) {
+          alert('Вводите только числа!');
+          return;
+        }
       var sum = 0;
       for (let i = 0; i < this.nums.length; i++)
-        sum += this.nums[i];
+        sum += parseFloat(this.nums[i]);
       alert(sum);
+    },
+    isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
     }
   }
 }
